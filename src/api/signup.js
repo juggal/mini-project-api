@@ -5,8 +5,8 @@ import createToken from "../services/createToken";
 import encrypt from "../services/encrypt";
 import inputValidation from "../services/inputValidation";
 
-//models
-import createUser from "../models/registrationModel";
+//services
+import createUser from "../services/createUser";
 
 const router = Router();
 

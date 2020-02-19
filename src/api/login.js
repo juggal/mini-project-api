@@ -6,12 +6,12 @@ import verifyToken from "../services/verifyToken";
 import hashCompare from "../services/hashCompare";
 import inputValidation from "../services/inputValidation";
 
-//model
-import findUser from "../models/loginModel";
+//services
+import findUser from "../services/findUser";
 
 const router = Router();
 
-router.post("/", [inputValidation.login, findUser, hashCompare], (req, res) => {
+router.post("/", [inputValidation.login], (req, res) => {
   // verify(req.token, "test", (err, authData) => {
   //   if (err) {
   //     res.sendStatus(403);
@@ -26,6 +26,7 @@ router.post("/", [inputValidation.login, findUser, hashCompare], (req, res) => {
   //   res.send("Input validation failed" + req.body.validate);
   // } else {
   //   res.send("Input validation success");
+  findUser(req.body.email);
   // }
 });
 

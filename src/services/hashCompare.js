@@ -1,9 +1,6 @@
 //Comparing plain text password with hash of the password
 import { compare, hash } from "bcrypt";
 
-//models
-// import findUser from "../models/loginModel";
-
 function hashCompare(req, res, next) {
   compare(req.body.password, req.body.hash, (err, result) => {
     if (result) {

@@ -1,12 +1,10 @@
-//importing services
-import db from "../services/firebaseConnect";
+import { Schema } from "mongoose";
 
-function createUser(data) {
-  db.collection("users")
-    .add(data)
-    .then(documentRef => {
-      console.log(`Reference path to document:${documentRef.path}`);
-    });
-}
+//creating login schema
+const registrationSchema = Schema({
+  name: String,
+  email: String,
+  password: String
+});
 
-export default createUser;
+export default registrationSchema;
