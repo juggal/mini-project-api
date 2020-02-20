@@ -13,6 +13,7 @@ router.post(
   "/",
   [inputValidation("loginSchema"), findUser, hashCompare],
   (req, res) => {
+    console.log("Login successful");
     res.json({
       msg: "Login Successful",
       token: createToken(req.body.tokendata)
