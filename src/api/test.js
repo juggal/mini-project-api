@@ -2,7 +2,6 @@ import { Router } from "express";
 import bodyParser from "body-parser";
 
 //services
-import firestore from "../services/firebaseConnect";
 
 const router = Router();
 

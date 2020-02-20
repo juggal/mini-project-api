@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import morgan from "morgan";
 
 //controllers
 import login from "./api/login";
@@ -13,6 +14,8 @@ const port = process.env.PORT || 3000;
 //initializing body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(morgan("dev"));
 
 //Controller attached to app object
 app.use("/api/login", login);

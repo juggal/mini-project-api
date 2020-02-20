@@ -2,10 +2,10 @@
 import { compare, hash } from "bcrypt";
 
 function hashCompare(req, res, next) {
+  console.log("Hash comparision started");
   compare(req.body.password, req.body.hash, (err, result) => {
     if (result) {
-      console.log("Login successful");
-      res.sendStatus(200);
+      next();
     } else {
       console.log("fail");
       res.sendStatus(403);

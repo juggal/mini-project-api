@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 //creating login schema
 const registrationSchema = Schema({
@@ -7,4 +7,4 @@ const registrationSchema = Schema({
   password: String
 });
 
-export default registrationSchema;
+export default model("user", registrationSchema, "users");

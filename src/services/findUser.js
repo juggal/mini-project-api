@@ -1,27 +1,28 @@
-import { model } from "mongoose";
-
 // import services
 import db from "./mongoConnect";
 
 //import models
-import loginSchema from "../models/loginModel";
+import loginModel from "../models/loginModel";
 
 const findUser = (req, res, next) => {
-  db.once("open", () => {
-    console.log(`Database connected`);
+  console.log("User search started");
 
-    const loginModel = model("users", loginSchema);
-
-    loginModel.findOne(req.body.email, (err, data) => {
-      if (err) {
-        console.log("User not found");
-        res.sendStatus(404);
-      } else {
-        console.log(data);
+  loginModel.findOne({ email: req.body.email }, (err, data) => {
+    if (err) {
+      res.sendStatus(404);
+    } else {
+      if (data !== null) {
+        req.body.tokendata = {
+          name: data.name,
+          email: data.email,
+          password: data.password
+        };
         req.body.hash = data.password;
+        next();
+      } else {
+        res.json({ msg: "User not exists" });
       }
-      next();
-    });
+    }
   });
 };
 

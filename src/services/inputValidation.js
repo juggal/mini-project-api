@@ -37,24 +37,34 @@ const contactSchema = joi.object({
     .required()
 });
 
-const validation = {
-  login: (req, res, next) => {
-    // console.log(req.body);
-    const value = loginSchema.validate(req.body);
-    // console.log(value);
-    req.body.validate = value.error;
-    next();
-  },
-  register: (req, res, next) => {
-    const value = registrationSchema.validate(req.body);
-    req.body.validate = value.error;
-    next();
-  },
-  contact: (req, res, next) => {
-    const value = contactSchema.validate(req.body);
-    req.body.validate = value.error;
-    next();
+const selectSchema = schemaType => {
+  let schema = null;
+  switch (schemaType) {
+    case "registrationSchema":
+      schema = registrationSchema;
+      break;
+    case "loginSchema":
+      schema = loginSchema;
+      break;
+    case "contactSchema":
+      schema = contactSchema;
   }
+  const validate = (req, res, next) => {
+    const value = schema.validate(req.body);
+    if (value.error) {
+      res.json(value.error.details[0].message);
+    } else {
+      next();
+    }
+  };
+  return validate;
 };
 
-export default validation;
+// const validate = schemaType => {
+//   return (req, res, next) => {
+//     const value = schemaType.validate(req.body);
+//     console.log(value.error);
+//   };
+// };
+
+export default selectSchema;

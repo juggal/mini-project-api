@@ -1,29 +1,32 @@
-import { model } from "mongoose";
-
-//import services
-import db from "./mongoConnect";
-
 //import model
-import registrationSchema from "../models/registrationModel";
+import registrationModel from "../models/registrationModel";
 
 const createUser = (req, res, next) => {
-  db.once("open", () => {
-    console.log("Database connected");
+  console.log("User creation started");
 
-    const registrationModel = model("users", registrationSchema);
-
-    registrationModel.findOne(user.email, (err, data) => {
-      if (err) {
-        console.log(err);
+  registrationModel.findOne({ email: req.body.email }, (err, data) => {
+    console.log(data);
+    if (err) {
+      console.log(err);
+    } else {
+      //check if user already exists or not
+      if (data !== null) {
+        console.log("User already exist");
+        res.json({ msg: "User already exist" });
       } else {
-        console.log(data);
-        if (data) {
-          console.log("User already exits");
-        } else {
-          console.log("User created");
-        }
+        //if user not exists create a new user
+        const newUser = registrationModel({
+          name: req.body.name,
+          email: req.body.email,
+          password: req.body.password
+        });
+
+        newUser.save();
+
+        console.log("User created");
+        res.json({ msg: "User created" });
       }
-    });
+    }
   });
 };
 
