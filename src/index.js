@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
+import cors from "cors";
 
 //controllers
 import login from "./api/login";
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(morgan("dev"));
+app.use(cors());
 
 //Controller attached to app object
 app.use("/api/login", login);
