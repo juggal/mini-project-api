@@ -16,14 +16,17 @@ function verifyToken(req, res, next) {
       } else if (typeof decoded == "undefined") {
         console.log("Token malfunctioned");
         res.sendStatus(403);
+        // next()
       } else {
         console.log("Route authenticated");
-        next();
+        res.json({ msg: "Route authenticated" });
+        // next();
       }
     });
   } else {
     console.log("Token not present");
     res.sendStatus(403);
+    next();
   }
 }
 
