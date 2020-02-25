@@ -15,7 +15,7 @@ router.post(
   [inputValidation("contactSchema"), saveEnquiry],
   (req, res) => {
     console.log("Enquiry saved");
-    res.sendStatus(200);
+    res.json({ msg: "Enquiry saved" });
   }
 );
 
