@@ -29,7 +29,7 @@ const contactSchema = joi.object({
     .required(),
   email: joi
     .string()
-    .email()
+    .email({ minDomainSegments: 2 })
     .required(),
   message: joi
     .string()

@@ -1,0 +1,5 @@
+language: node_js
+deploy:
+  provide: heroku
+  app: mini-project-sbjain
+  api_key: 1c9a82ff-542d-4554-858c-ff660f975734

@@ -12,20 +12,15 @@ function verifyToken(req, res, next) {
     verify(bearerToken, "test", (err, decoded) => {
       if (err) {
         console.error(err);
-        res.sendStatus(403);
-      } else if (typeof decoded == "undefined") {
-        console.log("Token malfunctioned");
-        res.sendStatus(403);
-        // next()
+        res.status(403).json({ msg: err });
       } else {
         console.log("Route authenticated");
         res.json({ msg: "Route authenticated" });
-        // next();
       }
     });
   } else {
     console.log("Token not present");
-    res.sendStatus(403);
+    res.status(403).json({ msg: "Toke not present" });
     next();
   }
 }
