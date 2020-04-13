@@ -8,7 +8,6 @@ import login from "./api/login";
 import signup from "./api/signup";
 import contactus from "./api/contactus";
 import search from "./api/search";
-import admin from "./api/admin";
 
 import db from "./services/mongoConnect";
 
@@ -26,7 +25,6 @@ app.use("/api/login", login);
 app.use("/api/signup", signup);
 app.use("/api/contact", contactus);
 app.use("/api/search", search);
-app.use("/api/admin", admin);
 
 //initializing a server
 app.listen(port, (err) => {
