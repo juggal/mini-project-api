@@ -7,9 +7,6 @@ import saveEnquiry from "../services/saveEnquiry";
 
 const router = Router();
 
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: true }));
-
 router.post(
   "/",
   [inputValidation("contactSchema"), saveEnquiry],

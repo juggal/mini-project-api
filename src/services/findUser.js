@@ -1,6 +1,3 @@
-// import services
-import db from "./mongoConnect";
-
 //import models
 import loginModel from "../models/loginModel";
 
@@ -15,7 +12,7 @@ const findUser = (req, res, next) => {
         req.body.tokendata = {
           name: data.name,
           email: data.email,
-          password: data.password
+          password: data.password,
         };
         req.body.hash = data.password;
         next();

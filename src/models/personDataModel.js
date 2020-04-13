@@ -3,8 +3,8 @@ import { Schema, model } from "mongoose";
 //creating search database model
 const personDataModel = Schema({
   name: String,
+  email: String,
   gender: String,
-  dob: String,
   marriage: String,
   city: String,
   state: String,

@@ -6,8 +6,6 @@ import searchPerson from "../services/searchPerson";
 
 const router = Router();
 
-router.post("/", [verifyToken, searchPerson], (req, res) => {
-  res.json({ msg: "search completed" });
-});
+router.post("/", [verifyToken, searchPerson], (req, res) => {});
 
 export default router;

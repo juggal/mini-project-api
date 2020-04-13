@@ -15,13 +15,14 @@ function verifyToken(req, res, next) {
         res.status(403).json({ msg: err });
       } else {
         console.log("Route authenticated");
-        res.json({ msg: "Route authenticated" });
+        // res.json({ msg: "Route authenticated" });
+        next();
       }
     });
   } else {
     console.log("Token not present");
     res.status(403).json({ msg: "Toke not present" });
-    next();
+    next("route");
   }
 }
 
